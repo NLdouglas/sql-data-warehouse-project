@@ -15,6 +15,10 @@ WARNING:
     and ensure you have proper backups before running this script.
 */
 
+USE Master;
+GO
+
+
 --Drop and recreate the "Datawarehouse" database
 
 IF EXISTS( SELECT 1 FROM sys.database WHERE name = 'Database')
@@ -22,18 +26,21 @@ BEGIN
   ALTER DATABASE Datawarehouse SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
   DROP DATABASE Datawarehouse;
 END;
+GO
 
+--Create the 'Datawarehouse' database
 
-
-
-
-
-
-USE Master;
 CREATE DATABASE Datawarehosue;
-
+GO
+    
 USE Datawarehosue;
+GO
 
+--Create Schemas 
+    
 CREATE SCHEMA bronze;
+GO
 CREATE SCHEMA silver;
+GO
 CREATE SCHEMA gold;
+GO
